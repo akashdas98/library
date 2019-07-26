@@ -2,6 +2,7 @@ const addBookButton = document.querySelector('#add');
 const newBookElement = document.querySelector('.new-book');
 const plusButton = document.querySelector('.plus');
 const table = document.querySelector('table.t2');
+const statusButtons = Array.from(document.querySelectorAll('.t2 button'));
 
 let myLibrary = [];
 
@@ -9,9 +10,20 @@ addBookButton.addEventListener('click', showMenu);
 
 plusButton.addEventListener('click', () => {
     addBookToLibrary();
-    displayInLibrary(myLibrary[myLibrary.length-1]);
     addBookButton.scrollIntoView();
 });
+
+function changeStatus(button, index) {
+    if(myLibrary[index].status == 'Unread') {
+        myLibrary[index].status = 'Read';
+        button.textContent = 'Read';
+        button.classList.add('read');
+    } else {
+        myLibrary[index].status = 'Unread';
+        button.textContent = 'Unread';
+        button.classList.remove('read');
+    }
+}
 
 function showMenu() {
     if(newBookElement.classList.contains('hide')) {
@@ -42,8 +54,15 @@ function displayInLibrary(book) {
     author.innerHTML = book.author;
     pages.innerHTML = book.pages;
     statusButton.innerHTML = book.status;
+    statusButton.classList.add('unread');
     status.appendChild(statusButton);
     
+    const index = myLibrary.length - 1;
+
+    statusButton.addEventListener('click', () => {
+        changeStatus(statusButton, index);
+        console.table(myLibrary);
+    });
 }
 
 function Book(title, author, pages, status) {
@@ -60,8 +79,10 @@ function addBookToLibrary() {
     const title = newBookElement.cells[0].childNodes[0].value;
     const author = newBookElement.cells[1].childNodes[0].value;
     const pages = newBookElement.cells[2].childNodes[0].value;
-
-    const newBook = new Book(title, author, pages, 'unread');
-
-    myLibrary.push(newBook);
+    
+    if(!isNaN(pages) && pages != '' && author != '' && title != '') {
+        const newBook = new Book(title, author, pages, 'Unread');
+        myLibrary.push(newBook);
+        displayInLibrary(myLibrary[myLibrary.length-1]);
+    }    
 }
