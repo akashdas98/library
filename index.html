@@ -22,15 +22,17 @@
     
         <div class="body">
             <table class="t2" cellpadding="0" cellspacing="0">
-                
+                <tbody></tbody>
             </table>
-            <table class="t3">
-                <tr class="book new-book hide">
-                    <td><input type="text" value="Title" onclick="this.value=''"></td>
-                    <td><input type="text" value="Author" onclick="this.value=''"></td>
-                    <td><input type="text" value="Pages" onclick="this.value=''"></td>
-                    <td><button class="plus">+</button></td>
-                </tr>
+            <table class="t3 hide">
+                <tbody>
+                    <tr class="book new-book">
+                        <td><input type="text" placeholder="Title"></td>
+                        <td><input type="text" placeholder="Author"></td>
+                        <td><input type="text" placeholder="Pages"></td>
+                        <td><button class="plus">+</button></td>
+                    </tr>
+                </tbody>
             </table>
             <button id="add">Add Book</button>
         </div>
