@@ -16,7 +16,9 @@ myLibrary.forEach(book => {
     displayInLibrary(book);
 });
 
-addBookButton.addEventListener('click', showMenu);
+addBookButton.addEventListener('click', () => {
+    showMenu();
+});
 
 plusButton.addEventListener('click', () => {
     addBookToLibrary();
@@ -28,11 +30,9 @@ function showMenu() {
         menuTable.classList.remove('hide');
         addBookButton.textContent = 'Done';
     } else {
-        Array.from(menuTable.rows[0].cells).forEach(cell => {
-            cell.childNodes[0].value = '';
-        });
         menuTable.classList.add('hide');
         addBookButton.textContent = 'Add Book';
+        clearInputs();
     }
 }
 
@@ -46,7 +46,14 @@ function addBookToLibrary() {
         myLibrary.push(newBook);
         localStorage.setItem(`myLibrary[${myLibrary.length-1}]`, JSON.stringify(newBook));
         displayInLibrary(myLibrary[myLibrary.length-1]);
+        clearInputs();
     }    
+}
+
+function clearInputs() {
+    Array.from(menuTable.rows[0].cells).forEach(cell => {
+        cell.childNodes[0].value = '';
+    });
 }
 
 function Book(title, author, pages, status) {
@@ -88,7 +95,7 @@ function displayInLibrary(book) {
     });
 
     removeButton.addEventListener('click', () => {
-        remove(index);
+        remove(removeButton);
     });
 }
 
@@ -104,10 +111,11 @@ function changeStatus(button, index) {
     }
 }
 
-function remove(index) {
+function remove(removeButton) {
+    const index = removeButton.parentElement.parentElement.rowIndex;
     const key = localStorage.key(localStorage.length - index - 1)
     
     myLibrary.splice(index, 1);
     localStorage.removeItem(key);
-    table.deleteRow(key);
+    table.deleteRow(index);
 }
