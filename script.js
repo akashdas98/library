@@ -83,15 +83,18 @@ function displayInLibrary(book) {
     pages.innerHTML = book.pages;
     statusButton.innerHTML = book.status;
     statusButton.classList.add('unread');
+    
+    if(book.status == 'Read') {
+        statusButton.classList.add('read');
+    }
+    
     status.appendChild(statusButton);
     removeButton.innerHTML = '&times;';
     removeButton.classList.add('remove');
     status.appendChild(removeButton);
-    
-    const index = myLibrary.length - 1;
 
     statusButton.addEventListener('click', () => {
-        changeStatus(statusButton, index);
+        changeStatus(statusButton);
     });
 
     removeButton.addEventListener('click', () => {
@@ -99,7 +102,10 @@ function displayInLibrary(book) {
     });
 }
 
-function changeStatus(button, index) {
+function changeStatus(button) {
+    const index = button.parentElement.parentElement.rowIndex;
+    const key = localStorage.key(localStorage.length - index - 1)
+
     if(myLibrary[index].status == 'Unread') {
         myLibrary[index].status = 'Read';
         button.textContent = 'Read';
@@ -109,10 +115,11 @@ function changeStatus(button, index) {
         button.textContent = 'Unread';
         button.classList.remove('read');
     }
+    localStorage.setItem(key, JSON.stringify(myLibrary[index]));
 }
 
-function remove(removeButton) {
-    const index = removeButton.parentElement.parentElement.rowIndex;
+function remove(button) {
+    const index = button.parentElement.parentElement.rowIndex;
     const key = localStorage.key(localStorage.length - index - 1)
     
     myLibrary.splice(index, 1);
