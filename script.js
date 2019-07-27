@@ -18,6 +18,7 @@ if(JSON.parse(localStorage.getItem('myLibrary'))) {
 
 addBookButton.addEventListener('click', () => {
     showMenu();
+    addBookButton.scrollIntoView();
 });
 
 plusButton.addEventListener('click', () => {
