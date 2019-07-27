@@ -7,14 +7,14 @@ const statusButtons = Array.from(document.querySelectorAll('.t2 button'));
 
 let myLibrary = [];
 
-for(i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(localStorage.length - i - 1);
-    myLibrary.push(JSON.parse(localStorage.getItem(key)));
-}
+console.log(JSON.parse(localStorage.getItem('myLibrary')));
 
-myLibrary.forEach(book => {
-    displayInLibrary(book);
-});
+if(JSON.parse(localStorage.getItem('myLibrary'))) {
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    myLibrary.forEach(book => {
+        displayInLibrary(book);
+    });
+}
 
 addBookButton.addEventListener('click', () => {
     showMenu();
@@ -44,7 +44,7 @@ function addBookToLibrary() {
     if(!isNaN(pages) && pages != '' && author != '' && title != '') {
         const newBook = new Book(title, author, pages, 'Unread');
         myLibrary.push(newBook);
-        localStorage.setItem(`myLibrary[${myLibrary.length-1}]`, JSON.stringify(newBook));
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
         displayInLibrary(myLibrary[myLibrary.length-1]);
         clearInputs();
     }    
@@ -61,9 +61,6 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
-    this.info = function() {
-        return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.status;
-    }
 }
 
 function displayInLibrary(book) {
@@ -104,7 +101,6 @@ function displayInLibrary(book) {
 
 function changeStatus(button) {
     const index = button.parentElement.parentElement.rowIndex;
-    const key = localStorage.key(localStorage.length - index - 1)
 
     if(myLibrary[index].status == 'Unread') {
         myLibrary[index].status = 'Read';
@@ -115,14 +111,13 @@ function changeStatus(button) {
         button.textContent = 'Unread';
         button.classList.remove('read');
     }
-    localStorage.setItem(key, JSON.stringify(myLibrary[index]));
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 function remove(button) {
     const index = button.parentElement.parentElement.rowIndex;
-    const key = localStorage.key(localStorage.length - index - 1)
     
     myLibrary.splice(index, 1);
-    localStorage.removeItem(key);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     table.deleteRow(index);
 }
