@@ -85,10 +85,10 @@ body {
 
 .body {
     position: relative;
-    top: 70px;
+    top: 69px;
     min-height: 100px;
     overflow: auto;
-    background: linear-gradient(to bottom, #685f55, #8d7e6e) 50% 190px fixed;
+    background: linear-gradient(to bottom, #685f55, #8d7e6e) 50% 189px fixed;
 }
 
 table {
