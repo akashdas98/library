@@ -38,6 +38,7 @@
     box-sizing: border-box;
     font-family: 'Montserrat';
     font-weight: 500;
+    touch-action: manipulation;
 }
 
 html, body {
