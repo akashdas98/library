@@ -46,8 +46,7 @@ html, body {
 }
 
 body {
-    background: -webkit-linear-gradient(top, #323d44, #4b5f70) 50% 120px fixed;
-    background: linear-gradient(to bottom, #323d44, #4b5f70) 50% 120px fixed;
+    background: #323d44 fixed;
 }
 
 .head {
@@ -82,7 +81,7 @@ body {
 .header, .body {
     width: 60vw;
     min-width: 840px;
-    background: #685f55;
+    background: rgba(95, 90, 81, 0.7) fixed;
 }
 
 .body {
@@ -90,8 +89,6 @@ body {
     top: 69px;
     min-height: 100px;
     overflow: auto;
-    background: -webkit-linear-gradient(top, #685f55, #8d7e6e) 50% 189px fixed;
-    background: linear-gradient(to bottom, #685f55, #8d7e6e) 50% 189px fixed;
 }
 
 table {
