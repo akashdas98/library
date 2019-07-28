@@ -70,7 +70,7 @@ body {
     top: 120px;
     margin: 0 auto;
     width: 60vw;
-    min-width: 840px;    
+    min-width: 840px; 
 }
 
 .header {
@@ -81,7 +81,7 @@ body {
 .header, .body {
     width: 60vw;
     min-width: 840px;
-    background: rgba(95, 90, 81, 0.7) fixed;
+    background: rgb(70, 65 , 65) fixed;
 }
 
 .body {
@@ -148,7 +148,7 @@ button {
 button.unread, button.remove {
     width: 80px;
     height: 40px;
-    background: #575668;
+    background: #605f75;
     color: rgb(230, 230, 230);
     font-size: 0.9em;
     margin: 0 1px;
@@ -156,12 +156,12 @@ button.unread, button.remove {
 
 button.unread:active {
     background: rgb(230, 230, 230);
-    color: #575668;
-    border: 1px solid #575668;
+    color: #605f75;
+    border: 1px solid #605f75;
 }
 
-button.read {
-    background: #627467;
+button.read, button.plus {
+    background: #6c8372;
 }
 
 button.remove{
@@ -176,7 +176,6 @@ button.remove:active {
 }
 
 button.plus {
-    background: #6c8372;
     height: 40px;
     width: 50px;
     font-size: 1.3em;
@@ -184,8 +183,8 @@ button.plus {
 }
 
 button.plus:active, button.read:active {
-    border: 1px solid #627467;
-    color: #627467;
+    border: 1px solid #6c8372;
+    color: #6c8372;
     background: rgb(230, 230, 230);
 }
 
@@ -193,7 +192,7 @@ button#add {
     display: block;
     height: 60px;
     width: 150px;
-    background: #575668;
+    background: #605f75;
     color: rgb(230, 230, 230);
     font-size: 1.4em;
     margin: 0 auto 20px auto;
@@ -201,6 +200,6 @@ button#add {
 
 button#add:active {
     background: rgb(230, 230, 230);
-    color: #575668;
-    border: 2px solid #575668;
+    color: #605f75;
+    border: 2px solid #605f75;
 }
