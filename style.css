@@ -81,7 +81,7 @@ body {
 .header, .body {
     width: 60vw;
     min-width: 840px;
-    background: rgb(75, 70, 70) fixed;
+    background: rgb(75, 73, 70) fixed;
 }
 
 .body {
